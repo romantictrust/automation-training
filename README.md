@@ -8,3 +8,4 @@ Here you can see an implementation of some tests and operations with GIT.
 - Lab 2: Test cases.
 - Lab 3: Unit tests via NUnit.
 - Lab 4: WebDriver
+- Lab 5: Page Object
