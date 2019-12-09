@@ -6,11 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import pageobject_model.model.User;
 
-public class SeleniumHQCreateAccountPage {
+public class CreateAccountPage {
     private  static final  String CREATEACCOUNT_URL = "https://www.autoeurope.eu/member-accounts/";
     private WebDriver driver;
     private WebElement createAnAccountLink;
@@ -20,30 +20,30 @@ public class SeleniumHQCreateAccountPage {
     private JavascriptExecutor js;
 
 
-    public  SeleniumHQCreateAccountPage(WebDriver driver) {
+    public CreateAccountPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public SeleniumHQCreateAccountPage openPage() {
+    public CreateAccountPage openPage() {
         driver.get(CREATEACCOUNT_URL);
         waitForPageLoaded();
         return this;
     }
 
-    public SeleniumHQCreateAccountPage moveToForm(){
+    public CreateAccountPage moveToForm(){
         createAnAccountLink = driver.findElement(By.className("account_create_link"));
         createAnAccountLink.click();
         waitForPageLoaded();
         return this;
     }
 
-    public SeleniumHQCreateAccountPage typeEmails(String email1, String email2) {
+    public CreateAccountPage typeEmails(User user) {
         emailInput = driver.findElement(By.xpath("//*[@id=\"member_email_create\"]"));
         verifyEmailInput = driver.findElement(By.xpath("//*[@id=\"member_reemail\"]"));
         errorMessage = driver.findElement(By.xpath("//*[@id=\"member_signup\"]/div[5]/div[2]/span"));
-        emailInput.sendKeys(email1);
-        verifyEmailInput.sendKeys(email2);
+        emailInput.sendKeys(user.getEmail());
+        verifyEmailInput.sendKeys(user.getEmail() + "qwerty");
         return this;
     }
 

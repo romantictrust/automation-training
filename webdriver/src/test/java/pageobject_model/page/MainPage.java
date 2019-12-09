@@ -9,8 +9,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import pageobject_model.model.User;
 
-public class SeleniumHQMainPage {
+public class MainPage {
     private  static final  String HOMEPAGE_URL = "https://www.autoeurope.eu/";
     private WebDriver driver;
     private WebElement subscribeInput;
@@ -18,12 +19,12 @@ public class SeleniumHQMainPage {
     private JavascriptExecutor js;
 
 
-    public  SeleniumHQMainPage(WebDriver driver) {
+    public MainPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public  SeleniumHQMainPage openPage() {
+    public MainPage openPage() {
         driver.get(HOMEPAGE_URL);
         waitForPageLoaded();
         subscribeInput = driver.findElement(By.xpath("//*[@id=\"newsletter__footer--input\"]"));
@@ -31,8 +32,8 @@ public class SeleniumHQMainPage {
         return this;
     }
 
-    public SeleniumHQMainPage subscribeEmail(String email) {
-        subscribeInput.sendKeys(email);
+    public MainPage subscribeEmail(User user) {
+        subscribeInput.sendKeys(user.getUsername());
         js = (JavascriptExecutor ) driver;
         js.executeScript("arguments[0].click();", subscribeButton);
         return this;
