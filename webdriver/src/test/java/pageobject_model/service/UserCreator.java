@@ -4,13 +4,14 @@ import pageobject_model.model.User;
 
 public class UserCreator {
 
-    public static final String TEST_DATA_CASE1_USER_NAME = "baby-yoda";
-    public static final String TEST_DATA_CASE1_USER_EMAIL = "mandalorianSuperCool@gmail.com";
+    public static final String TEST_DATA_CASE1_USER_NAME = "testdata.user.name";
+    public static final String TEST_DATA_CASE1_USER_EMAIL = "testdata.user.email";
 
     public static User withCredentialsFromProperty(){
-        return new User(TEST_DATA_CASE1_USER_NAME, TEST_DATA_CASE1_USER_EMAIL);
+        return new User(TestDataReader.getTestData(TEST_DATA_CASE1_USER_NAME),
+                TestDataReader.getTestData(TEST_DATA_CASE1_USER_EMAIL));
     }
 
-    public static User withEmptyUsername() { return new User("", TEST_DATA_CASE1_USER_EMAIL); }
-    public static User withEmptyEmail() { return new User(TEST_DATA_CASE1_USER_NAME, ""); }
+    public static User withEmptyUsername() { return new User("", TestDataReader.getTestData(TEST_DATA_CASE1_USER_EMAIL)); }
+    public static User withEmptyEmail() { return new User(TestDataReader.getTestData(TEST_DATA_CASE1_USER_NAME), ""); }
 }
