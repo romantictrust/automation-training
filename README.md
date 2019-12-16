@@ -10,4 +10,3 @@ Here you can see an implementation of some tests and operations with GIT.
 - Lab 4: WebDriver.
 - Lab 5: Page Object.
 - Lab 6: Clean code.
-- Lab 7: Frameworks Pt.1 (framework branch).
