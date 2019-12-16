@@ -1,5 +1,7 @@
-package pageobject_model.page;
+package edu.romantictrust.webdriver.page;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -9,10 +11,11 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import pageobject_model.model.User;
+import edu.romantictrust.webdriver.model.User;
 
 public class MainPage {
     private  static final  String HOMEPAGE_URL = "https://www.autoeurope.eu/";
+    private final Logger logger = LogManager.getRootLogger();
     private WebDriver driver;
     private WebElement subscribeInput;
     private WebElement subscribeButton;
@@ -29,13 +32,15 @@ public class MainPage {
         waitForPageLoaded();
         subscribeInput = driver.findElement(By.xpath("//*[@id=\"newsletter__footer--input\"]"));
         subscribeButton = driver.findElement(By.xpath("//*[@id=\"main-footer__content\"]/div[1]/div/div/div[1]/div/div/div[3]/button"));
+        logger.info("Opened page");
         return this;
     }
 
     public MainPage subscribeEmail(User user) {
-        subscribeInput.sendKeys(user.getUsername());
+        subscribeInput.sendKeys(user.getEmail());
         js = (JavascriptExecutor ) driver;
         js.executeScript("arguments[0].click();", subscribeButton);
+        logger.info("Entered email: [" + user.getEmail() + "]");
         return this;
     }
 

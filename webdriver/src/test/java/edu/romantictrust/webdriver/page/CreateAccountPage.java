@@ -1,5 +1,7 @@
-package pageobject_model.page;
+package edu.romantictrust.webdriver.page;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -8,10 +10,11 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import pageobject_model.model.User;
+import edu.romantictrust.webdriver.model.User;
 
 public class CreateAccountPage {
     private  static final  String CREATEACCOUNT_URL = "https://www.autoeurope.eu/member-accounts/";
+    private final Logger logger = LogManager.getRootLogger();
     private WebDriver driver;
     private WebElement createAnAccountLink;
     private WebElement emailInput;
@@ -28,6 +31,7 @@ public class CreateAccountPage {
     public CreateAccountPage openPage() {
         driver.get(CREATEACCOUNT_URL);
         waitForPageLoaded();
+        logger.info("Opened page");
         return this;
     }
 
@@ -35,6 +39,7 @@ public class CreateAccountPage {
         createAnAccountLink = driver.findElement(By.className("account_create_link"));
         createAnAccountLink.click();
         waitForPageLoaded();
+        logger.info("Moved to form");
         return this;
     }
 
@@ -42,8 +47,10 @@ public class CreateAccountPage {
         emailInput = driver.findElement(By.xpath("//*[@id=\"member_email_create\"]"));
         verifyEmailInput = driver.findElement(By.xpath("//*[@id=\"member_reemail\"]"));
         errorMessage = driver.findElement(By.xpath("//*[@id=\"member_signup\"]/div[5]/div[2]/span"));
+        String modifiedEmail = user.getEmail() + "qwerty";
         emailInput.sendKeys(user.getEmail());
-        verifyEmailInput.sendKeys(user.getEmail() + "qwerty");
+        verifyEmailInput.sendKeys(modifiedEmail);
+        logger.info("Entered email: [" + user.getEmail() + "] and confirmed it with [" + modifiedEmail + "]");
         return this;
     }
 

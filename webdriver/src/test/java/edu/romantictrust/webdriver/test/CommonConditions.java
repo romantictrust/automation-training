@@ -1,11 +1,11 @@
-package pageobject_model.test;
+package edu.romantictrust.webdriver.test;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
-import pageobject_model.driver.DriverSingleton;
-import pageobject_model.util.TestListener;
+import edu.romantictrust.webdriver.driver.DriverSingleton;
+import edu.romantictrust.webdriver.util.TestListener;
 
 @Listeners({TestListener.class})
 public class CommonConditions {

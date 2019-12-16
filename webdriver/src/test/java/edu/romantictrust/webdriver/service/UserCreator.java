@@ -1,6 +1,6 @@
-package pageobject_model.service;
+package edu.romantictrust.webdriver.service;
 
-import pageobject_model.model.User;
+import edu.romantictrust.webdriver.model.User;
 
 public class UserCreator {
 

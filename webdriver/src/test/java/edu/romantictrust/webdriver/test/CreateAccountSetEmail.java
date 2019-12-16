@@ -1,10 +1,10 @@
-package pageobject_model.test;
+package edu.romantictrust.webdriver.test;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pageobject_model.model.User;
-import pageobject_model.page.CreateAccountPage;
-import pageobject_model.service.UserCreator;
+import edu.romantictrust.webdriver.model.User;
+import edu.romantictrust.webdriver.page.CreateAccountPage;
+import edu.romantictrust.webdriver.service.UserCreator;
 
 public class CreateAccountSetEmail extends CommonConditions {
 

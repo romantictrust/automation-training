@@ -1,4 +1,4 @@
-package pageobject_model.model;
+package edu.romantictrust.webdriver.model;
 
 import java.util.Objects;
 

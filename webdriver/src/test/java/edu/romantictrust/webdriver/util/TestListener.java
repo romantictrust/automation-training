@@ -1,4 +1,4 @@
-package pageobject_model.util;
+package edu.romantictrust.webdriver.util;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -8,7 +8,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import pageobject_model.driver.DriverSingleton;
+import edu.romantictrust.webdriver.driver.DriverSingleton;
 
 import java.io.File;
 import java.io.IOException;

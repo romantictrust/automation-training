@@ -1,4 +1,4 @@
-package pageobject_model.service;
+package edu.romantictrust.webdriver.service;
 
 import java.util.ResourceBundle;
 
