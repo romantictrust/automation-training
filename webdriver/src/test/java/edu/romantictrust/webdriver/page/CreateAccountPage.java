@@ -47,10 +47,9 @@ public class CreateAccountPage {
         emailInput = driver.findElement(By.xpath("//*[@id=\"member_email_create\"]"));
         verifyEmailInput = driver.findElement(By.xpath("//*[@id=\"member_reemail\"]"));
         errorMessage = driver.findElement(By.xpath("//*[@id=\"member_signup\"]/div[5]/div[2]/span"));
-        String modifiedEmail = user.getEmail() + "qwerty";
         emailInput.sendKeys(user.getEmail());
-        verifyEmailInput.sendKeys(modifiedEmail);
-        logger.info("Entered email: [" + user.getEmail() + "] and confirmed it with [" + modifiedEmail + "]");
+        verifyEmailInput.sendKeys(user.getUsername());
+        logger.info("Entered email: [" + user.getEmail() + "] and confirmed it with [" + user.getUsername() + "]");
         return this;
     }
 

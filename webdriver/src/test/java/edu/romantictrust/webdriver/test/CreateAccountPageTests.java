@@ -6,7 +6,7 @@ import edu.romantictrust.webdriver.model.User;
 import edu.romantictrust.webdriver.page.CreateAccountPage;
 import edu.romantictrust.webdriver.service.UserCreator;
 
-public class CreateAccountSetEmail extends CommonConditions {
+public class CreateAccountPageTests extends CommonConditions {
 
     @Test(description = "A test for reproducing the catch of errors associated with email and verify email inconsistency. >> Test case №3 <<")
     public void CreateAccountSetEmailTest() {

@@ -37,10 +37,10 @@ public class MainPage {
     }
 
     public MainPage subscribeEmail(User user) {
-        subscribeInput.sendKeys(user.getEmail());
+        subscribeInput.sendKeys(user.getUsername());
         js = (JavascriptExecutor ) driver;
         js.executeScript("arguments[0].click();", subscribeButton);
-        logger.info("Entered email: [" + user.getEmail() + "]");
+        logger.info("Entered email: [" + user.getUsername() + "]");
         return this;
     }
 
