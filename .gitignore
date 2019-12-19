@@ -378,6 +378,7 @@ tomcat
 
 # Maven 
 target/
+Readme.txt
 
 # IntelliJ project files 
 *.iml

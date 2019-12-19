@@ -17,4 +17,20 @@ public class MainPageTests extends CommonConditions {
                 .subscribeEmail(testUser).getPlaceholder();
         Assert.assertEquals(expectedEmailConfirmationString, "Invalid email");
     }
+
+    @Test (description = "A test for reproducing the catch of errors associated with language change. >> Test case №5 <<")
+    public void switchLanguage() {
+        String expectedUrl = new MainPage(driver)
+                .openPage()
+                .switchLanguage().getActualUrl();
+        Assert.assertEquals(expectedUrl, "https://www.autoeurope.ru/index.cfm");
+    }
+
+    @Test (description = "A test for reproducing the catch of errors associated with currency change. >> Test case №9 <<")
+    public void switchCurrency() {
+        String expectedCurrency = new MainPage(driver)
+                .openPage()
+                .switchLanguage().getActualCurrency();
+        Assert.assertEquals(expectedCurrency, "RUB");
+    }
 }
