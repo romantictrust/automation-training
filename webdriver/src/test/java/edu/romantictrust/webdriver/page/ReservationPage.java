@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -17,15 +18,21 @@ public class ReservationPage {
     private final Logger logger = LogManager.getRootLogger();
     private WebDriver driver;
     private WebElement puCountrySelect;
+    private WebElement country;
     private WebElement puCitySelect;
+    private WebElement city;
     private WebElement puLocationSelect;
+    private WebElement location;
     private WebElement puDateButton;
+    private WebElement puDate;
     private WebElement puTimeButton;
+    private WebElement puTime;
     private WebElement doDateButton;
+    private WebElement doDate;
     private WebElement doTimeButton;
+    private WebElement doTime;
     private WebElement getQuoteButton;
     private JavascriptExecutor js;
-
 
     public ReservationPage(WebDriver driver) {
         this.driver = driver;
@@ -39,39 +46,80 @@ public class ReservationPage {
         return this;
     }
 
-    public ReservationPage setRentCarData(CarReservation reservation){
-        js = (JavascriptExecutor ) driver;
+    public ReservationPage runCarReservation(CarReservation reservation){
+        WebElement getQuoteButton = driver.findElement(By.xpath("//*[@id=\"ae-search\"]/div[3]/div[6]/button"));
+        getQuoteButton.click();
+        logger.info("Reservation request");
+        return this;
+    }
+
+    public ReservationPage setCountry(CarReservation reservation){
         WebElement puCountrySelect = driver.findElement(By.name("PU-country"));
-        js.executeScript("arguments[0].click();", puCountrySelect);
-        puCountrySelect.sendKeys(reservation.getPickUpCountry());
+        puCountrySelect.click();
+        new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text()," + reservation.getPickUpCountry() + ")]")));
+        country = driver.findElement(By.xpath("//*[contains(text()," + reservation.getPickUpCountry() + ")]"));
+        country.click();
+        logger.info("Set country [" + reservation.getPickUpCountry() + "]");
+        return  this;
+    }
+
+    public ReservationPage setCity(CarReservation reservation){
         WebElement puCitySelect = driver.findElement(By.name("PU-city"));
-        js.executeScript("arguments[0].click();", puCitySelect);
-        js.executeScript("arguments[0].click();", puCitySelect);
+        puCountrySelect.click();
         puCitySelect.sendKeys(reservation.getPickUpCity());
+        new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text()," + reservation.getPickUpCity() + ")]")));
+        city = driver.findElement(By.xpath("//*[contains(text()," + reservation.getPickUpCity() + ")]"));
+        city.click();
+        logger.info("Set city [" + reservation.getPickUpCity() + "]");
+        return  this;
+    }
+
+    public ReservationPage setLocation(CarReservation reservation){
+        js = (JavascriptExecutor ) driver;
         WebElement puLocationSelect = driver.findElement(By.name("PU-loc"));
         js.executeScript("arguments[0].click();", puLocationSelect);
-        js.executeScript("arguments[0].click();", puLocationSelect);
         puLocationSelect.sendKeys(reservation.getPickUpLocation());
+        location.findElement(By.linkText(reservation.getPickUpLocation()));
+        js.executeScript("arguments[0].click();", location);
+        logger.info("Set location [" + reservation.getPickUpLocation() + "]");
+        return  this;
+    }
+
+    public ReservationPage setPUdate(CarReservation reservation){
+        js = (JavascriptExecutor ) driver;
         WebElement puDateButton = driver.findElement(By.xpath("//*[@id=\"pickup-date\"]"));
         js.executeScript("arguments[0].click();", puDateButton);
-        js.executeScript("arguments[0].click();", puDateButton);
         puDateButton.sendKeys(reservation.getPickUpDate());
+        logger.info("Set pick-up date [" + reservation.getPickUpDate() + "]");
+        System.exit(0);
+        return  this;
+    }
+
+    public ReservationPage setPUtime(CarReservation reservation){
+        js = (JavascriptExecutor ) driver;
         WebElement puTimeButton = driver.findElement(By.xpath("//*[@id=\"pickup-time-button\"]"));
         js.executeScript("arguments[0].click();", puTimeButton);
-        js.executeScript("arguments[0].click();", puTimeButton);
         puTimeButton.sendKeys(reservation.getPickUpTime());
+        logger.info("Set pick-up time [" + reservation.getPickUpTime() + "]");
+        return  this;
+    }
+
+    public ReservationPage setDOdate(CarReservation reservation){
+        js = (JavascriptExecutor ) driver;
         WebElement doDateButton = driver.findElement(By.xpath("//*[@id=\"dropoff-date\"]"));
         js.executeScript("arguments[0].click();", doDateButton);
-        js.executeScript("arguments[0].click();", doDateButton);
         doDateButton.sendKeys(reservation.getDropOffDate());
+        logger.info("Set drop-off date [" + reservation.getDropOffDate() + "]");
+        return  this;
+    }
+
+    public ReservationPage setDOtime(CarReservation reservation){
+        js = (JavascriptExecutor ) driver;
         WebElement doTimeButton = driver.findElement(By.xpath("//*[@id=\"dropoff-time-button\"]"));
         js.executeScript("arguments[0].click();", doTimeButton);
-        js.executeScript("arguments[0].click();", doTimeButton);
         doTimeButton.sendKeys(reservation.getDropOffTime());
-        WebElement getQuoteButton = driver.findElement(By.xpath("//*[@id=\"ae-search\"]/div[3]/div[6]/button"));
-        js.executeScript("arguments[0].click();", getQuoteButton);
-        js.executeScript("arguments[0].click();", getQuoteButton);
-        return this;
+        logger.info("Set drop-off time [" + reservation.getDropOffTime() + "]");
+        return  this;
     }
 
     public String getPlaceholder() {

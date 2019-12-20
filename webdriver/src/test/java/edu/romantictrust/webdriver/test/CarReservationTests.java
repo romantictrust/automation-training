@@ -9,8 +9,16 @@ public class CarReservationTests extends CommonConditions{
     @Test(description = "A test for reproducing the catch of errors associated with incorrect date input. >> Test case №4 <<")
     public void ReservationDataTest() {
         CarReservation reservation = CarReservationCreator.withNormalCredentialsFromProperty();
-        String expectedEmailConfirmationString = new ReservationPage(driver)
+        String expectedCarReservationDate = new ReservationPage(driver)
                 .openPage()
-                .setRentCarData(reservation).getPlaceholder();
+                .setCountry(reservation)
+                .setCity(reservation)
+                .setLocation(reservation)
+                .setPUdate(reservation)
+                .setPUtime(reservation)
+                .setDOdate(reservation)
+                .setDOtime(reservation)
+                .runCarReservation(reservation)
+                .getPlaceholder();
     }
 }

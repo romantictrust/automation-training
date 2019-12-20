@@ -3,7 +3,7 @@
 <suite name="Smoke" verbose="1" >
     <test name="CreateAccountSetEmail">
         <packages>
-            <package name="edu.romantictrust.webdriver.test.MainPageTests" />
+            <package name="edu.romantictrust.webdriver.test.CarReservationTests" />
         </packages>
     </test>
 </suite>
