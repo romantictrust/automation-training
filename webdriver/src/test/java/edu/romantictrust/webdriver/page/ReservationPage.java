@@ -32,6 +32,8 @@ public class ReservationPage {
     private WebElement doTimeButton;
     private WebElement doTime;
     private WebElement getQuoteButton;
+    private WebElement transmissionTypeButton;
+    private String transmissionChangeText;
     private JavascriptExecutor js;
 
     public ReservationPage(WebDriver driver) {
@@ -47,16 +49,16 @@ public class ReservationPage {
     }
 
     public ReservationPage runCarReservation(CarReservation reservation){
-        WebElement getQuoteButton = driver.findElement(By.xpath("//*[@id=\"ae-search\"]/div[3]/div[6]/button"));
+        getQuoteButton = driver.findElement(By.xpath("//*[@id=\"ae-search\"]/div[3]/div[6]/button"));
         getQuoteButton.click();
         logger.info("Reservation request");
         return this;
     }
 
     public ReservationPage setCountry(CarReservation reservation){
-        WebElement puCountrySelect = driver.findElement(By.name("PU-country"));
+        puCountrySelect = driver.findElement(By.name("PU-country"));
         puCountrySelect.click();
-        new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text()," + reservation.getPickUpCountry() + ")]")));
+        new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'" + reservation.getPickUpCountry() + "')]")));
         country = driver.findElement(By.xpath("//*[contains(text()," + reservation.getPickUpCountry() + ")]"));
         country.click();
         logger.info("Set country [" + reservation.getPickUpCountry() + "]");
@@ -64,10 +66,9 @@ public class ReservationPage {
     }
 
     public ReservationPage setCity(CarReservation reservation){
-        WebElement puCitySelect = driver.findElement(By.name("PU-city"));
+        puCitySelect = driver.findElement(By.name("PU-city"));
         puCountrySelect.click();
-        puCitySelect.sendKeys(reservation.getPickUpCity());
-        new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text()," + reservation.getPickUpCity() + ")]")));
+        new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'" + reservation.getPickUpCity() + "')]")));
         city = driver.findElement(By.xpath("//*[contains(text()," + reservation.getPickUpCity() + ")]"));
         city.click();
         logger.info("Set city [" + reservation.getPickUpCity() + "]");
@@ -75,55 +76,75 @@ public class ReservationPage {
     }
 
     public ReservationPage setLocation(CarReservation reservation){
-        js = (JavascriptExecutor ) driver;
-        WebElement puLocationSelect = driver.findElement(By.name("PU-loc"));
-        js.executeScript("arguments[0].click();", puLocationSelect);
-        puLocationSelect.sendKeys(reservation.getPickUpLocation());
-        location.findElement(By.linkText(reservation.getPickUpLocation()));
-        js.executeScript("arguments[0].click();", location);
+        puLocationSelect = driver.findElement(By.name("PU-loc"));
+        puLocationSelect.click();
+        new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'" + reservation.getPickUpCity() + "')]")));
+        location = driver.findElement(By.xpath("//*[contains(text()," + reservation.getPickUpLocation() + ")]"));
+        location.click();
         logger.info("Set location [" + reservation.getPickUpLocation() + "]");
         return  this;
     }
 
     public ReservationPage setPUdate(CarReservation reservation){
-        js = (JavascriptExecutor ) driver;
-        WebElement puDateButton = driver.findElement(By.xpath("//*[@id=\"pickup-date\"]"));
-        js.executeScript("arguments[0].click();", puDateButton);
-        puDateButton.sendKeys(reservation.getPickUpDate());
+        puDateButton = driver.findElement(By.xpath("//*[@id=\"pickup-date\"]"));
+        puDateButton.click();
+        new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'" + reservation.getPickUpDate() + "')]")));
+        puDate = driver.findElement(By.xpath("//*[contains(text()," + reservation.getPickUpDate() + ")]"));
+        puDate.click();
         logger.info("Set pick-up date [" + reservation.getPickUpDate() + "]");
-        System.exit(0);
         return  this;
     }
 
     public ReservationPage setPUtime(CarReservation reservation){
-        js = (JavascriptExecutor ) driver;
-        WebElement puTimeButton = driver.findElement(By.xpath("//*[@id=\"pickup-time-button\"]"));
-        js.executeScript("arguments[0].click();", puTimeButton);
-        puTimeButton.sendKeys(reservation.getPickUpTime());
+        puTimeButton = driver.findElement(By.xpath("//*[@id=\"pickup-time-button\"]"));
+        puTimeButton.click();
+        new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'" + reservation.getPickUpTime() + "')]")));
+        puTime = driver.findElement(By.xpath("//*[contains(text()," + reservation.getPickUpTime() + ")]"));
+        puTime.click();
         logger.info("Set pick-up time [" + reservation.getPickUpTime() + "]");
         return  this;
     }
 
     public ReservationPage setDOdate(CarReservation reservation){
-        js = (JavascriptExecutor ) driver;
-        WebElement doDateButton = driver.findElement(By.xpath("//*[@id=\"dropoff-date\"]"));
-        js.executeScript("arguments[0].click();", doDateButton);
-        doDateButton.sendKeys(reservation.getDropOffDate());
+        doDateButton = driver.findElement(By.xpath("//*[@id=\"dropoff-date\"]"));
+        doDateButton.click();
+        new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'" + reservation.getDropOffDate() + "')]")));
+        doDate = driver.findElement(By.xpath("//*[contains(text()," + reservation.getDropOffDate() + ")]"));
+        doDate.click();
         logger.info("Set drop-off date [" + reservation.getDropOffDate() + "]");
         return  this;
     }
 
     public ReservationPage setDOtime(CarReservation reservation){
-        js = (JavascriptExecutor ) driver;
-        WebElement doTimeButton = driver.findElement(By.xpath("//*[@id=\"dropoff-time-button\"]"));
-        js.executeScript("arguments[0].click();", doTimeButton);
-        doTimeButton.sendKeys(reservation.getDropOffTime());
+        doTimeButton = driver.findElement(By.xpath("//*[@id=\"dropoff-time-button\"]"));
+        doTimeButton.click();
+        new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'" + reservation.getDropOffTime() + "')]")));
+        doTime = driver.findElement(By.xpath("//*[contains(text()," + reservation.getDropOffTime() + ")]"));
+        doTime.click();
         logger.info("Set drop-off time [" + reservation.getDropOffTime() + "]");
         return  this;
     }
 
+    public ReservationPage changeTransmission(){
+        transmissionTypeButton = driver.findElement(By.xpath("//*[@id=\"matrix__filters\"]/div[2]/div[1]/div"));
+        transmissionTypeButton.click();
+        new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'Automatic Only')]")));
+        driver.findElement(By.xpath("//*[contains(text(),'Automatic Only')]")).click();
+        logger.info("Transmission had been changed");
+        return this;
+    }
+
     public String getPlaceholder() {
-        return "hi";
+        new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"dropoff-date\"]")));
+        doDateButton = driver.findElement(By.xpath("//*[@id=\"dropoff-date\"]"));
+        logger.info("Resulting date [" + doDateButton.getText() + "]");
+        return doDateButton.getText();
+    }
+
+    public String getChangedTransmission(){
+        transmissionChangeText = driver.findElement(By.xpath("//*[@id=\"matrix__scroll-container\"]/ul[1]/li[2]")).getText();
+        logger.info("Resulting text [" + transmissionChangeText + "]");
+       return transmissionChangeText;
     }
 
     public void waitForPageLoaded() {

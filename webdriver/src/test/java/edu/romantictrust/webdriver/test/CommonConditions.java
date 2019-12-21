@@ -3,6 +3,7 @@ package edu.romantictrust.webdriver.test;
 import edu.romantictrust.webdriver.driver.DriverSingleton;
 import edu.romantictrust.webdriver.util.TestListener;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 
@@ -17,9 +18,9 @@ public class CommonConditions {
         driver = DriverSingleton.getDriver();
     }
 
-//    @AfterMethod(alwaysRun = true)
-//    public void stopBrowser()
-//    {
-//        DriverSingleton.closeDriver();
-//    }
+    @AfterMethod(alwaysRun = true)
+    public void stopBrowser()
+    {
+        DriverSingleton.closeDriver();
+    }
 }

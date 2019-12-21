@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Smoke" verbose="1" >
-    <test name="CreateAccountSetEmail">
-        <packages>
-            <package name="edu.romantictrust.webdriver.test.CarReservationTests" />
-        </packages>
+    <test name="CarReservationTests">
+        <classes>
+            <class name="edu.romantictrust.webdriver.test.CarReservationTests" />
+        </classes>
     </test>
 </suite>
