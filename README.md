@@ -11,3 +11,6 @@ Here you can see an implementation of some tests and operations with GIT.
 - Lab 5: Page Object.
 - Lab 6: Clean code.
 - Lab 7: Frameworks Pt.1 (framework branch).
+- Lab 8: Frameworks Pt.2 (framework2 branch).
+- Lab 9: CI.
+- Lab 10: Logging (framework2 branch).
